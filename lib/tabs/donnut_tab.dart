@@ -1,3 +1,4 @@
+import 'package:donut_app_2c_vecino/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
 class DonnutTab extends StatelessWidget {
@@ -16,15 +17,16 @@ class DonnutTab extends StatelessWidget {
     // Widget para usar cuadricula
     return GridView.builder(
       // Cuántos elementos hay en una cuadricula
-      itemCount: donutsOnSale.lenght,
+      itemCount: donutsOnSale.length,
       padding: EdgeInsets.all(12),
       // Prepa 1. Cómo se verán los elementos.
       gridDelegate:
         SliverGridDelegateWithFixedCrossAxisCount(
           // Cuántas columnas
-          crossAxisCount: 2
-
-        )
+          crossAxisCount: 2,
+          //Relación de aspecto (proporción)
+          childAspectRatio: 1 / 1.5,
+        ),
       
       itemBuilder: (context, index){
         // Cada elemento individual
@@ -33,10 +35,8 @@ class DonnutTab extends StatelessWidget {
         donnutPrice: donutsOnSale [index][1],
         donnutColor: donutsOnSale[index][2],
         imageName: donutsOnSale[index][3],
-        )
-        
-    
-      }
-    )
+        );
+      },
+    );
   }
 }
