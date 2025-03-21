@@ -22,6 +22,17 @@ class _HomePageState extends State<HomePage> {
     const MyTab(iconPath: 'lib/icons/pizza.png')
   ];
 
+// Variables del carrito
+   int itemCount = 0;
+   double totalPrice = 0.0;
+ 
+   void addToCart(double price) {
+     setState(() {
+       itemCount++;
+       totalPrice += price;
+     });
+   }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -61,11 +72,11 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: TabBarView(
                 children: [
-                  DonnutTab(),
-                  BurgerTab(),
-                  SmoothieTab(),
-                  PancakesTab(),
-                  PizzaTab()
+                  DonnutTab(onAddToCart: addToCart),
+                  BurgerTab(onAddToCart: addToCart),
+                  SmoothieTab(onAddToCart: addToCart),
+                  PancakesTab(onAddToCart: addToCart),
+                  PizzaTab(onAddToCart: addToCart)
                 ],
               ),
             ),
@@ -83,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                       // Alinear horizontalmente una columna
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("2 Items | \$45",
+                        Text('$itemCount Items | \$${totalPrice.toStringAsFixed(2)}',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

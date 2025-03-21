@@ -2,6 +2,7 @@ import 'package:donut_app_2c_vecino/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
 class DonnutTab extends StatelessWidget {
+  final Function(double) onAddToCart;
   //lista de donas
   final List donutsOnSale = [
     // [ donutFlavor, donutText, donutPrice, donutColor, imageName ]
@@ -15,7 +16,7 @@ class DonnutTab extends StatelessWidget {
     ["Grape Ape", "Aurrerá","84", Colors.purple, "lib/images/grape_donut.png"],
     ["Choco", "Costo","95", Colors.brown, "lib/images/chocolate_donut.png"],
   ];
-  DonnutTab({super.key});
+  DonnutTab({super.key, required this.onAddToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,11 @@ class DonnutTab extends StatelessWidget {
         donnutPrice: donutsOnSale [index][2],
         donnutColor: donutsOnSale[index][3],
         imageName: donutsOnSale[index][4],
+
+        onAddToCart: () {
+             double price = double.tryParse(donutsOnSale[index][2]) ?? 0;
+             onAddToCart(price);
+        },
         );
       },
     );

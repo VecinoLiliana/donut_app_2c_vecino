@@ -8,8 +8,10 @@ class DonnutTile extends StatelessWidget{
   // Es dynamic porque será de tipo COLOR
   final dynamic donnutColor;
   final String imageName;
+  final VoidCallback onAddToCart;
+  
 
-  const DonnutTile({super.key, required this.donnutFlavor,required this.donnutText, required this.donnutPrice, this.donnutColor, required this.imageName, });
+  const DonnutTile({super.key, required this.donnutFlavor,required this.donnutText, required this.donnutPrice, this.donnutColor, required this.imageName,required this.onAddToCart });
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,10 @@ class DonnutTile extends StatelessWidget{
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Icon(Icons.favorite_border),
-                  Icon(Icons.add),
+                  GestureDetector(
+                     onTap: onAddToCart,
+                     child: Icon(Icons.add),
+                  )
                 ],
               ),
             ),
